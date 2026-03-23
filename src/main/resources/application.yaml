@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: exercicioSpring
+  datasource:
+    url: ${URL_DB:jdbc:oracle:thin:@localhost:1521/XEPDB1}
+    username: ${USERNAME_DB:edu}
+    password: ${USERNAME_PASSWORD:1234}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 9090
