@@ -31,5 +31,8 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    private Inventory inventory;
+
 
 }
