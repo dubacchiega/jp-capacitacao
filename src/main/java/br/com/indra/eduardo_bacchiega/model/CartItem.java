@@ -32,6 +32,6 @@ public class CartItem {
 
     private Integer quantity;
 
-    @Column
+    @Column(name = "price_snapshot")
     private BigDecimal priceSnapshot;
 }
