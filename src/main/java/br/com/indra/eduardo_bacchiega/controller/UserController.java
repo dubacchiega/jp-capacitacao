@@ -1,6 +1,7 @@
 package br.com.indra.eduardo_bacchiega.controller;
 
 import br.com.indra.eduardo_bacchiega.config.TokenService;
+import br.com.indra.eduardo_bacchiega.docs.UserControllerDoc;
 import br.com.indra.eduardo_bacchiega.dto.LoginRequestDto;
 import br.com.indra.eduardo_bacchiega.dto.LoginResponseDto;
 import br.com.indra.eduardo_bacchiega.dto.UserCreatedResponseDto;
@@ -20,18 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
-public class UserController {
+public class UserController implements UserControllerDoc {
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
+    @Override
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/new")
     public UserCreatedResponseDto register(UserRegisterDto user){
         return userService.register(user);
     }
 
+    @Override
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/login")
     public LoginResponseDto login(LoginRequestDto request) {
@@ -43,9 +46,5 @@ public class UserController {
 
         return new LoginResponseDto(token);
     }
-
-
-
-
 }
 

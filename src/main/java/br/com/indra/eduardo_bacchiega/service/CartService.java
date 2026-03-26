@@ -1,10 +1,9 @@
 package br.com.indra.eduardo_bacchiega.service;
 
 import br.com.indra.eduardo_bacchiega.dto.CartItemRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.CartItemResponseDto;
 import br.com.indra.eduardo_bacchiega.dto.CartResponseDto;
 import br.com.indra.eduardo_bacchiega.exception.CartAlreadyExistsException;
-import br.com.indra.eduardo_bacchiega.exception.CartNotFound;
+import br.com.indra.eduardo_bacchiega.exception.CartNotFoundException;
 import br.com.indra.eduardo_bacchiega.exception.ProductsNotFound;
 import br.com.indra.eduardo_bacchiega.exception.UserNotFoundException;
 import br.com.indra.eduardo_bacchiega.mapper.CartMapper;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -122,7 +120,7 @@ public class CartService {
 
     private Cart findCart(Long userId){
         return cartRepository.findByUserId(userId).orElseThrow(
-                () -> new CartNotFound("Cart not found for this user")
+                () -> new CartNotFoundException("Cart not found for this user")
         );
     }
 }

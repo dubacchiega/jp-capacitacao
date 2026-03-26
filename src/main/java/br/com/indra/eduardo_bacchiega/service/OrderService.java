@@ -5,7 +5,7 @@ import br.com.indra.eduardo_bacchiega.dto.InventoryRemoveRequestDto;
 import br.com.indra.eduardo_bacchiega.dto.OrderResponseDto;
 import br.com.indra.eduardo_bacchiega.enums.OrderStatus;
 import br.com.indra.eduardo_bacchiega.exception.CartEmptyException;
-import br.com.indra.eduardo_bacchiega.exception.CartNotFound;
+import br.com.indra.eduardo_bacchiega.exception.CartNotFoundException;
 import br.com.indra.eduardo_bacchiega.exception.OrderNotFoundException;
 import br.com.indra.eduardo_bacchiega.exception.OrderOperationInvalidException;
 import br.com.indra.eduardo_bacchiega.mapper.OrderMapper;
@@ -37,7 +37,7 @@ public class OrderService {
     @Transactional
     public OrderResponseDto newOrder(JWTUserData user) {
         Cart cart = cartRepository.findByUserId(user.id()).orElseThrow(
-                () -> new CartNotFound("Cannot find a cart for this user")
+                () -> new CartNotFoundException("Cannot find a cart for this user")
         );
 
         if (cart.getItems().isEmpty()) {
@@ -88,8 +88,9 @@ public class OrderService {
 
     }
 
-    public OrderResponseDto getOrder(Long id){
-        Order order = orderRepository.findById(id).orElseThrow(
+    public OrderResponseDto getOrder(JWTUserData user, Long id){
+
+        Order order = orderRepository.findByIdAndUserId(id, user.id()).orElseThrow(
                 () -> new OrderNotFoundException("Order not found.")
         );
 
