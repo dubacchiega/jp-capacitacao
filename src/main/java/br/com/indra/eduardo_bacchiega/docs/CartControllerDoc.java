@@ -1,15 +1,12 @@
 package br.com.indra.eduardo_bacchiega.docs;
 
-import br.com.indra.eduardo_bacchiega.dto.CartItemRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.CartResponseDto;
-import br.com.indra.eduardo_bacchiega.service.UserService;
+import br.com.indra.eduardo_bacchiega.cart.dto.CartItemRequestDto;
+import br.com.indra.eduardo_bacchiega.cart.dto.CartResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 // validar exceções para checar se o código corresponde
 
@@ -44,7 +41,10 @@ public interface CartControllerDoc {
     })
     public CartResponseDto addItems(
             @Parameter(description = "Dados do item a ser adicionado.")
-            CartItemRequestDto request);
+            CartItemRequestDto request,
+            @Parameter(description = "Cupom a ser aplicado.", required = false)
+            String coupon
+    );
 
     @Operation(summary = "Remove um item do carrinho do usuário.", description = "Remove o item desejado do carrinho do usuário logado.")
     @ApiResponses(value = {

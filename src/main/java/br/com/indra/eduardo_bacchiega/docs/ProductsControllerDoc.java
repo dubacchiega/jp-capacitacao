@@ -1,7 +1,7 @@
 package br.com.indra.eduardo_bacchiega.docs;
 
-import br.com.indra.eduardo_bacchiega.dto.ProductRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.ProductResponseDto;
+import br.com.indra.eduardo_bacchiega.product.dto.ProductRequestDto;
+import br.com.indra.eduardo_bacchiega.product.dto.ProductResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

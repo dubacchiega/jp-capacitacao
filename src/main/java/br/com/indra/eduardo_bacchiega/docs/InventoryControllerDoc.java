@@ -1,15 +1,13 @@
 package br.com.indra.eduardo_bacchiega.docs;
 
-import br.com.indra.eduardo_bacchiega.dto.InventoryAddRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.InventoryRemoveRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.InventoryResponseDto;
+import br.com.indra.eduardo_bacchiega.inventory.dto.InventoryAddRequestDto;
+import br.com.indra.eduardo_bacchiega.inventory.dto.InventoryRemoveRequestDto;
+import br.com.indra.eduardo_bacchiega.inventory.dto.InventoryResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Estoque", description = "Controller para gerenciamento de estoque (compra, venda e consulta)")
 public interface InventoryControllerDoc {

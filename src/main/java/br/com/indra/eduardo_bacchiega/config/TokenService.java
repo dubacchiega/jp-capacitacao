@@ -1,6 +1,6 @@
 package br.com.indra.eduardo_bacchiega.config;
 
-import br.com.indra.eduardo_bacchiega.model.User;
+import br.com.indra.eduardo_bacchiega.user.model.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class TokenService {
 
-    @Value("${client.auth.secret}")
+    @Value("${user.auth.secret}")
     private String secret;
 
     public String generateToken(User user) {

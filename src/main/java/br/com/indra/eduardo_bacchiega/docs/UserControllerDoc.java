@@ -1,9 +1,9 @@
 package br.com.indra.eduardo_bacchiega.docs;
 
-import br.com.indra.eduardo_bacchiega.dto.LoginRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.LoginResponseDto;
-import br.com.indra.eduardo_bacchiega.dto.UserCreatedResponseDto;
-import br.com.indra.eduardo_bacchiega.dto.UserRegisterDto;
+import br.com.indra.eduardo_bacchiega.user.dto.LoginRequestDto;
+import br.com.indra.eduardo_bacchiega.user.dto.LoginResponseDto;
+import br.com.indra.eduardo_bacchiega.user.dto.UserCreatedResponseDto;
+import br.com.indra.eduardo_bacchiega.user.dto.UserRegisterDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

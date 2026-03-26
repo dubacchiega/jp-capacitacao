@@ -1,14 +1,12 @@
 package br.com.indra.eduardo_bacchiega.docs;
 
-import br.com.indra.eduardo_bacchiega.dto.CategoryRequestDto;
-import br.com.indra.eduardo_bacchiega.dto.CategoryResponseDto;
+import br.com.indra.eduardo_bacchiega.category.dto.CategoryRequestDto;
+import br.com.indra.eduardo_bacchiega.category.dto.CategoryResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package br.com.indra.eduardo_bacchiega.config;
 
-import br.com.indra.eduardo_bacchiega.repository.UserRepository;
+import br.com.indra.eduardo_bacchiega.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
