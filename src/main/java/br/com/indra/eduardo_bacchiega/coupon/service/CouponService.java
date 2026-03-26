@@ -1,6 +1,9 @@
 package br.com.indra.eduardo_bacchiega.coupon.service;
 
+import br.com.indra.eduardo_bacchiega.coupon.dto.CouponRequestDto;
+import br.com.indra.eduardo_bacchiega.coupon.dto.CouponResponseDto;
 import br.com.indra.eduardo_bacchiega.coupon.dto.ValidCoupon;
+import br.com.indra.eduardo_bacchiega.coupon.mapper.CouponMapper;
 import br.com.indra.eduardo_bacchiega.coupon.model.Coupon;
 import br.com.indra.eduardo_bacchiega.coupon.repository.CouponRepository;
 import br.com.indra.eduardo_bacchiega.enums.DiscountType;
@@ -20,26 +23,30 @@ public class CouponService {
     private final CouponRepository couponRepository;
 
 
-    public Coupon newCoupon(Coupon newCoupon){
-        couponRepository.findByCode(newCoupon.getCode()).ifPresent(
+    public CouponResponseDto newCoupon(CouponRequestDto newCoupon){
+        couponRepository.findByCode(newCoupon.code()).ifPresent(
                 (e) -> {
                     throw new CouponExistsException("This coupon already exists");
                 }
         );
 
         Coupon coupon = Coupon.builder()
-                .code(newCoupon.getCode())
-                .discountType(newCoupon.getDiscountType())
-                .discountValue(newCoupon.getDiscountValue())
-                .expiration(newCoupon.getExpiration())
-                .usageLimit(newCoupon.getUsages())
+                .code(newCoupon.code())
+                .discountType(newCoupon.discountType())
+                .discountValue(newCoupon.discountValue())
+                .expiration(newCoupon.expiration())
+                .usageLimit(newCoupon.usageLimit())
                 .usages(0)
                 .build();
-        return coupon;
+        couponRepository.save(coupon);
+        return CouponMapper.toDto(coupon);
     }
 
-    public List<Coupon> getAllCoupon(){
-        return couponRepository.findAll();
+    public List<CouponResponseDto> getAllCoupon(){
+        List<Coupon> all = couponRepository.findAll();
+        return all.stream().map(
+                CouponMapper::toDto
+        ).toList();
     }
 
     public ValidCoupon valid(Coupon coupon){

@@ -2,6 +2,7 @@ package br.com.indra.eduardo_bacchiega.cart.service;
 
 import br.com.indra.eduardo_bacchiega.cart.dto.CartItemRequestDto;
 import br.com.indra.eduardo_bacchiega.cart.dto.CartResponseDto;
+import br.com.indra.eduardo_bacchiega.coupon.dto.CouponRequestDto;
 import br.com.indra.eduardo_bacchiega.coupon.dto.ValidCoupon;
 import br.com.indra.eduardo_bacchiega.coupon.model.Coupon;
 import br.com.indra.eduardo_bacchiega.coupon.repository.CouponRepository;
@@ -83,6 +84,9 @@ public class CartService {
             cartItem.setQuantity(cartItem.getQuantity() + request.quantity());
             cartItem.setPriceSnapshot(calculateWithCoupon(coupon, product.getPrice()));
 
+            coupon.setUsages(coupon.getUsages() + 1);
+            coupon.setUsageLimit(coupon.getUsageLimit() - 1);
+
         } else {
             CartItem newCartItem = CartItem.builder()
                     .cart(cart)
@@ -91,8 +95,13 @@ public class CartService {
                     .priceSnapshot(calculateWithCoupon(coupon, product.getPrice()))
                     .build();
             cart.getItems().add(newCartItem);
+            coupon.setUsages(coupon.getUsages() + 1);
+            coupon.setUsageLimit(coupon.getUsageLimit() - 1);
+
         }
         recalculateTotal(cart);
+        cartRepository.save(cart);
+        couponRepository.save(coupon);
 
         return CartMapper.toDto(cart);
 
