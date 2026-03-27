@@ -33,9 +33,9 @@ Aqui você irá encontrar os detalhes de todos os endpoints, parâmetros requeri
 Grande parte da aplicação é protegida por Spring Security utilizando Tokens JWT.
 Para aceder a rotas protegidas (como as do Carrinho de Compras /cart/** e Pedidos /order/**), é necessário:
 
-1. Criar um utilizador em POST /user/new enviando um JSON com name, email e password.
+1. Criar uma requisição POST para /user/new enviando um JSON com name, email e password.
 
-2. Fazer login em POST /user/login com as suas credenciais para receber o Token JWT.
+2. Fazer login POST para /user/login com as credenciais para receber o Token JWT.
 
 3. Incluir o token no Header de autorização das próximas requisições HTTP no formato:
 
