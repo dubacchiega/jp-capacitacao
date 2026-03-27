@@ -28,3 +28,15 @@ A API possui documentação automática gerada pelo Swagger. Sendo possível ace
 [Link do Swagger](http://localhost:9090/swagger-ui/index.html#/)
 
 Aqui você irá encontrar os detalhes de todos os endpoints, parâmetros requeridos e respostas possíveis de todos os Controllers (ProductsController, CartController, OrderController, etc.).
+
+## Autenticação e Segurança
+Grande parte da aplicação é protegida por Spring Security utilizando Tokens JWT.
+Para aceder a rotas protegidas (como as do Carrinho de Compras /cart/** e Pedidos /order/**), é necessário:
+
+1. Criar um utilizador em POST /user/new enviando um JSON com name, email e password.
+
+2. Fazer login em POST /user/login com as suas credenciais para receber o Token JWT.
+
+3. Incluir o token no Header de autorização das próximas requisições HTTP no formato:
+
+`Authorization: Bearer <seu_token_jwt_aqui>`
